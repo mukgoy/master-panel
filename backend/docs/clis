@@ -1,0 +1,3 @@
+nest g module globals/modules/mail
+nest g service globals/modules/mail
+mkdir src\globals\modules\mail\templates
