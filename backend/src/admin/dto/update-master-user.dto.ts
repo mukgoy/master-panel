@@ -1,10 +1,10 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsInt } from 'class-validator';
-import { CreateFaqDto } from './create-faq.dto';
+import { CreateCustomerDto } from './create-customer.dto';
 
-export class UpdateFaqDto extends PartialType(CreateFaqDto) {
+export class UpdateCustomerDto extends PartialType(CreateCustomerDto) {
 
     @ApiProperty()
-    public faqId: string;
+    public id: string;
 }

@@ -1,20 +1,20 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNumberString, IsOptional, IsString } from "class-validator";
+import { IsEmail, IsInt, IsNumberString, IsString } from "class-validator";
 
-export class CreateChatUserDto {
+export class CreateCustomerDto {
     
     @IsEmail()
     @ApiProperty()
     public email: string;
 
-    @IsOptional()
     @IsNumberString()
     @ApiProperty()
-    public phone: string;
+    public phone?: string;
 
-    @IsOptional()
     @IsString()
     @ApiProperty()
-    public name: string;
+    public name?: string;
+
+    public req?: any
 
 }

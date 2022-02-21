@@ -2,8 +2,8 @@ import { BotEntity, ChatUserEntity, FaqEntity, UploadEntity } from 'src/globals/
 import { Entity, Column, OneToMany, TreeChildren, TreeParent, ObjectIdColumn, ObjectID} from 'typeorm';
 import { CommonProperty } from './common.property';
 
-@Entity({name: 'users'})
-export class UserEntity extends CommonProperty{
+@Entity({name: 'master_users'})
+export class MasterUserEntity extends CommonProperty{
     @ObjectIdColumn()
     userId: ObjectID;
 
