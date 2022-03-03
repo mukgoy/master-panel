@@ -1,16 +1,16 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SignupDto } from '../dto/singup.dto';
-import { UserEntity } from '../../globals/entities/user.entity';
+import { MasterUserEntity } from '../../globals/entities/master-user.entity';
 import { Permission } from '../enums';
-import { UserRepository } from 'src/globals/repository/user.repository';
+import { MasterUserRepository } from 'src/globals/repository/master-user.repository';
 import { SocialDto } from '../dto/social.dto';
 import { ResetPasswordDto } from '../dto/reset-password.dto';
 
 export type User = any;
 
 @Injectable()
-export class UserService {
+export class MasterUserService {
   private readonly users = [
     {
       userId: 1,
@@ -27,19 +27,19 @@ export class UserService {
   ];
 
   constructor(
-    @InjectRepository(UserRepository)
-    private readonly userRepository: UserRepository
+    @InjectRepository(MasterUserRepository)
+    private readonly userRepository: MasterUserRepository
   ) { }
 
-  async findOne(username: string): Promise<UserEntity> {
+  async findOne(username: string): Promise<MasterUserEntity> {
     return await this.userRepository.findByEmail(username)
   }
 
-  async create(signupDto: SignupDto): Promise<UserEntity> {
+  async create(signupDto: SignupDto): Promise<MasterUserEntity> {
     return this.userRepository.createUser(signupDto);
   }
 
-  async resetPassword(dto: ResetPasswordDto): Promise<UserEntity> {
+  async resetPassword(dto: ResetPasswordDto): Promise<MasterUserEntity> {
     if(dto.password !== dto.cpassword){
       throw new BadRequestException();
     }
@@ -52,7 +52,7 @@ export class UserService {
     throw new UnauthorizedException();
   }
 
-  async socialLogin(socialDto: SocialDto): Promise<UserEntity> {
+  async socialLogin(socialDto: SocialDto): Promise<MasterUserEntity> {
     return this.userRepository.socialLogin(socialDto);
   }
 }

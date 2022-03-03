@@ -3,7 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { MailModule } from 'src/globals/modules/mail/mail.module';
 import { AuthController } from './auth.controller';
 import { jwtConstants } from './constants';
-import { AuthService, JwtStrategy, LocalStrategy, UserService } from './services';
+import { AuthService, JwtStrategy, LocalStrategy, MasterUserService } from './services';
 
 @Module({
   controllers: [AuthController],
@@ -18,7 +18,7 @@ import { AuthService, JwtStrategy, LocalStrategy, UserService } from './services
     LocalStrategy,
     JwtStrategy,
     AuthService,
-    UserService,
+    MasterUserService,
   ],
   exports: [
 

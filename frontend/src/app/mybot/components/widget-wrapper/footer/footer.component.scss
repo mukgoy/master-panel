@@ -1,0 +1,16 @@
+[contenteditable]{
+    min-height: 40px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+[contenteditable][placeholder]:empty::before{
+    content: attr(placeholder);
+    color: rgb(123, 152, 182);
+}
+[placeholder]:empty:focus::before {
+    content: "";
+}
+[contenteditable]:focus{
+    outline: currentcolor none medium;
+}
+

@@ -31,6 +31,7 @@ export class CustomerController {
 
   @Put(':id')
   update(@Request() req, @Param('id') id: string, @Body() updateCustomerDto: UpdateCustomerDto) {
+		console.log(updateCustomerDto)
     updateCustomerDto.req = req
     return this.customerService.update(id, updateCustomerDto);
   }

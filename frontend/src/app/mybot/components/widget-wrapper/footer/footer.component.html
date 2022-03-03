@@ -1,0 +1,11 @@
+<form class="chat-editor-area">
+	<div class="emojiarea-editor outline-none scrollbar py-3 shadow-none" contenteditable="true" (keyup)="onChangeHTML($event)" #textMsgBox placeholder="Write a message"></div>
+	<input class="d-none" type="file" id="chat-file-upload" />
+	<div class="btn btn-link emoji-icon d-none" data-emoji-button="data-emoji-button">
+		<span class="fa fa-paperclip"></span>
+	</div>
+	<button class="btn btn-sm btn-send m-0" type="button" (click)="onSubmit()">
+		<img src="./assets/mybot/images/plan.svg" class="p-1" style="width: 32px;height: 32px;">
+		
+	</button>
+</form>

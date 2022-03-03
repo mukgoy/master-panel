@@ -1,0 +1,13 @@
+<div class="alert-box p-3 rounded">
+    <div class="d-flex flex-column flex-sm-row text-center text-sm-left">
+        <img class="align-self-center" src="assets/admin/img/alert.png">
+        <div class="pt-2 pl-0">
+            <h3 class="mb-0 m-auto m-sm-2" [innerHtml]="title"></h3>
+            <div class="mb-1 text-muted m-auto m-sm-2" [innerHtml]="message"></div>
+        </div>
+    </div>
+    <div class="text-center text-sm-right mt-3">
+        <button type="button" class="btn btn-light rounded-0 mr-2" (click)="onCancel()">{{btnCancelText}}</button>
+        <button type="button" class="btn btn-danger rounded-0" (click)="onConfirm()">{{btnOkText}}</button>
+    </div>
+</div>

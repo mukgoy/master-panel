@@ -4,12 +4,12 @@ import { MailService } from 'src/globals/modules/mail/mail.service';
 import { ResetPasswordDto } from '../dto/reset-password.dto';
 import { SignupDto } from '../dto/singup.dto';
 import { SocialDto } from '../dto/social.dto';
-import { UserService } from './user.service';
+import { MasterUserService } from './master-user.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private userService: UserService,
+    private userService: MasterUserService,
     private jwtService: JwtService,
     private mailService: MailService
   ) {}

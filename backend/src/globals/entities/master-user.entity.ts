@@ -1,6 +1,15 @@
-import { BotEntity, ChatUserEntity, FaqEntity, UploadEntity } from 'src/globals/entities';
-import { Entity, Column, OneToMany, TreeChildren, TreeParent, ObjectIdColumn, ObjectID} from 'typeorm';
+import { UploadEntity } from 'src/globals/entities';
+import { Entity, Column, TreeChildren, TreeParent, ObjectIdColumn, ObjectID} from 'typeorm';
 import { CommonProperty } from './common.property';
+
+export enum MasterRole {
+	OWNER = 'owner',
+	ADMIN = 'admin',
+	MANAGER = 'manager',
+	SUPPORT = 'support',
+	DEV = 'dev',
+	QA = 'qa',
+}
 
 @Entity({name: 'master_users'})
 export class MasterUserEntity extends CommonProperty{
@@ -8,13 +17,10 @@ export class MasterUserEntity extends CommonProperty{
     userId: ObjectID;
 
     @TreeChildren()
-    team: UserEntity[];
+    team: MasterUserEntity[];
 
     @TreeParent()
-    owner: UserEntity;
-
-    @Column({unique: true})
-    primaryKey : string;
+    owner: MasterUserEntity;
 
     @Column()
     email : string;
@@ -31,22 +37,16 @@ export class MasterUserEntity extends CommonProperty{
     @Column({ default: true })
     isActive: boolean = true;
 
-		@Column({ default: ['basic'] })
-		plans: any[] = ['basic'];
+		@Column({ default: MasterRole.SUPPORT })
+		MasterRole: MasterRole = MasterRole.SUPPORT;
 
-    profileName? : string;
-    about? : string;
-
-    bots: BotEntity[];
-    faqs: BotEntity[];
     uploads: UploadEntity[];
-    chatUsers: ChatUserEntity[];
 
     idToken?: string;
     authToken?: string;
     provider?: string;
 
-    constructor(user?: Partial<UserEntity>) {
+    constructor(user?: Partial<MasterUserEntity>) {
         super()
         Object.assign(this, user);
     }

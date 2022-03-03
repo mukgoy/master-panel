@@ -1,0 +1,115 @@
+<main class="main" id="top" [ngClass]="{'navbar-vertical-collapsed': !isOpen}">
+  <div class="container" data-layout="container">
+    <nav class="navbar navbar-light navbar-vertical navbar-expand-xl navbar-card">
+      <script>
+        var navbarStyle = localStorage.getItem("navbarStyle");
+        if (navbarStyle && navbarStyle !== 'transparent') {
+          document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
+        }
+      </script>
+      <div class="d-flex align-items-center">
+        <div class="toggle-icon-wrapper">
+          <button (click)="isOpen=!isOpen;" class="btn navbar-toggler-humburger-icon navbar-vertical-toggle layout" data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+        </div><a class="navbar-brand" href="../index.html">
+          <div class="d-flex align-items-center py-3"><img class="me-2" src="../assets/admin/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span class="font-sans-serif">falcon</span></div>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarVerticalCollapse" [ngClass]="{'show': isOpenMobile}">
+        <div class="navbar-vertical-content scrollbar">
+          <ul class="navbar-nav flex-column my-3" id="navbarVerticalNav">
+            <li class="nav-item">
+              <a class="nav-link" (click)="isOpenMobile=!isOpenMobile" [routerLink]="['/admin/dashboard']" routerLinkActive="active" data-bs-toggle="" aria-expanded="false">
+                <div class="d-flex align-items-center">
+                  <span class="nav-link-icon">
+                    <svg class="svg-inline--fa fa-chart-pie fa-w-17" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chart-pie" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 544 512" data-fa-i2svg="">
+                      <path fill="currentColor" d="M527.79 288H290.5l158.03 158.03c6.04 6.04 15.98 6.53 22.19.68 38.7-36.46 65.32-85.61 73.13-140.86 1.34-9.46-6.51-17.85-16.06-17.85zm-15.83-64.8C503.72 103.74 408.26 8.28 288.8.04 279.68-.59 272 7.1 272 16.24V240h223.77c9.14 0 16.82-7.68 16.19-16.8zM224 288V50.71c0-9.55-8.39-17.4-17.84-16.06C86.99 51.49-4.1 155.6.14 280.37 4.5 408.51 114.83 513.59 243.03 511.98c50.4-.63 96.97-16.87 135.26-44.03 7.9-5.6 8.42-17.23 1.57-24.08L224 288z"></path>
+                    </svg><!-- <span class="fas fa-chart-pie"></span> Font Awesome fontawesome.com -->
+                  </span>
+                  <span class="nav-link-text ps-1">Dashboard</span>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="isOpenMobile=!isOpenMobile" [routerLink]="['/admin/manage-bots']" routerLinkActive="active" data-bs-toggle="" aria-expanded="false">
+                <div class="d-flex align-items-center">
+                  <span class="nav-link-icon">
+                    <i class="fa fa-android fa-2x" aria-hidden="true"></i>
+                  </span>
+                  <span class="nav-link-text ps-1">Manage Bots</span>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="isOpenMobile=!isOpenMobile" [routerLink]="['/admin/manage-faqs']" routerLinkActive="active" data-bs-toggle="" aria-expanded="false">
+                <div class="d-flex align-items-center">
+                  <span class="nav-link-icon"><svg class="svg-inline--fa fa-layer-group fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="layer-group" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                      <path fill="currentColor" d="M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z"></path>
+                    </svg><!-- <span class="fas fa-layer-group"></span> Font Awesome fontawesome.com --></span>
+                  <span class="nav-link-text ps-1">Manage FAQs</span>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="isOpenMobile=!isOpenMobile" [routerLink]="['/admin/conversations']" routerLinkActive="active" data-bs-toggle="" aria-expanded="false">
+                <div class="d-flex align-items-center">
+                  <span class="nav-link-icon"><svg class="svg-inline--fa fa-comments fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="comments" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+                      <path fill="currentColor" d="M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z"></path>
+                    </svg><!-- <span class="fas fa-comments"></span> Font Awesome fontawesome.com --></span>
+                  <span class="nav-link-text ps-1">Conversations</span>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="isOpenMobile=!isOpenMobile" [routerLink]="['/admin/crm']" routerLinkActive="active" data-bs-toggle="" aria-expanded="false">
+                <div class="d-flex align-items-center">
+                  <span class="nav-link-icon">
+                    <svg class="svg-inline--fa fa-users fa-w-20 text-900 fs-3" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="users" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg="">
+                      <path fill="currentColor" d="M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62 75.1 109.4h66c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-256 0c61.9 0 112-50.1 112-112S381.9 32 320 32 208 82.1 208 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zm-223.7-13.4C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-text ps-1">CRM</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="content">
+      <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand">
+        <button (click)="isOpenMobile=!isOpenMobile" class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+        <a class="navbar-brand me-1 me-sm-3" href="../index.html">
+          <div class="d-flex align-items-center"><img class="me-2" src="../assets/admin/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span class="font-sans-serif">falcon</span></div>
+        </a>
+        <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+          <li class="nav-item">
+            <div class="theme-control-toggle fa-icon-wait px-2"><input class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle" type="checkbox" data-theme-control="theme" value="dark" /><label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Switch to light theme"><span class="fas fa-sun fs-0"></span></label><label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Switch to dark theme"><span class="fas fa-moon fs-0"></span></label></div>
+          </li>
+          <li class="nav-item d-none d-sm-block-hold">
+            <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill" href="#">
+              <span class="fa fa-shopping-cart" data-fa-transform="shrink-7" style="font-size: 33px;"></span>
+              <span class="notification-indicator-number">1</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <div dropdown>
+              <a id="button-basic" dropdownToggle class="nav-link pe-0" aria-controls="dropdown-alignment">
+                <div class="avatar avatar-xl">
+                  <img class="rounded-circle" src="../assets/admin/img/team/avatar.png" alt="" />
+                </div>
+              </a>
+              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-end py-0" role="menu">
+                <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                  <li role="menuitem"><a class="dropdown-item" [routerLink]="['/admin/myprofile']">My Profile</a></li>
+                  <li class="divider dropdown-divider"></li>
+                  <li role="menuitem"><a class="dropdown-item" [routerLink]="['/auth/logout']">Logout</a></li>
+                </div>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <admin-sidebar></admin-sidebar>
+    </div>
+  </div>
+</main>

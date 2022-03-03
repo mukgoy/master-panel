@@ -1,22 +1,20 @@
 import { SocialDto } from "src/auth/dto/social.dto";
 import { EntityRepository, Repository } from "typeorm";
-import { UserEntity } from "../entities/user.entity";
+import { MasterUserEntity } from "../entities/master-user.entity";
 
-@EntityRepository(UserEntity)
-export class UserRepository extends Repository<UserEntity> {
+@EntityRepository(MasterUserEntity)
+export class MasterUserRepository extends Repository<MasterUserEntity> {
 
     async createUser(signupDto) {
-        let user = new UserEntity();
+        let user = new MasterUserEntity();
         user.name = signupDto.name;
         user.email = signupDto.email;
-        user.primaryKey = signupDto.email;
         user.password = signupDto.password;
         return user.save();
     }
 
     async socialLogin(socialDto: SocialDto) {
-        let user = new UserEntity(socialDto);
-        user.primaryKey = socialDto.email;
+        let user = new MasterUserEntity(socialDto);
         user.password = new Date().getTime().toString();
         user = await user.save().catch(err => {
             if (err.writeErrors) {
@@ -24,19 +22,19 @@ export class UserRepository extends Repository<UserEntity> {
             }
         });
         if (user && !user.owner) {
-            user.owner = new UserEntity();
+            user.owner = new MasterUserEntity();
             user.owner.userId = user.userId
         }
         return user
     }
 
-    async findByEmail(email: string): Promise<UserEntity> {
+    async findByEmail(email: string): Promise<MasterUserEntity> {
         let user = await this.findOne({
             where: { email },
             relations: ["owner"],
         });
         if (user && !user.owner) {
-            user.owner = new UserEntity();
+            user.owner = new MasterUserEntity();
             user.owner.userId = user.userId
         }
         return user

@@ -1,0 +1,25 @@
+<div class="chat-content-header" [style]="ngStyle()">
+	<div class="row flex-between-center">
+		<div class="col-auto d-flex align-items-center">
+			<a class="pe-3 text-700 d-md-none contacts-list-show d-none" href="#!">
+				<div class="fa fa-chevron-left"></div>
+			</a>
+			<img [src]="botConfig?.jsondata?.header?.logo" class="rounded mr-1" style="width: 32px;height: 32px;">
+			<div class="min-w-0">
+				<h5 class="mb-0 text-truncate fs-1" [style]="{'color': botConfig?.jsondata.textColor}">{{botConfig?.jsondata?.header?.text}}</h5>
+				<div class="fs--2 text-400 d-none">Active On Chat</div>
+			</div>
+		</div>
+		<div class="col-auto">
+			<button class="btn btn-sm btn-falcon-primary me-2" type="button" title="Close window" (click)="closeWindow()">
+				<span class="fa fa-times"></span>
+			</button>
+			<button class="btn btn-sm btn-falcon-primary me-2 d-none" type="button" data-index="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Start a Video Call">
+				<span class="fas fa-video"></span>
+			</button>
+			<button class="btn btn-sm btn-falcon-primary d-none" type="button" data-index="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Conversation Information">
+				<span class="fa fa-times"></span>
+			</button>
+		</div>
+	</div>
+</div>

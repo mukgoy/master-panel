@@ -1,44 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity, ResourceUsageEntity, Resource } from '../entities';
-import { ResourceUsageRepository } from '../repository/resource-usage.repository';
+import { MasterUserEntity } from '../entities/master-user.entity';
 import { eventname } from './event-names';
 
 @Injectable()
-export class UserListener {
+export class MasterUserListener {
 
-	constructor(
-		@InjectRepository(ResourceUsageRepository)
-		private readonly usageRepository: ResourceUsageRepository
-	) { }
+	constructor() { }
 
 	@OnEvent(eventname.user.created)
-	async handleUserCreatedEvent(event: { user: UserEntity, dtouser: UserEntity }) {
+	async handleUserCreatedEvent(event: { user: MasterUserEntity, dtouser: MasterUserEntity }) {
 		this.resourceCreateOrDelete(event, true)
 	}
 
 	@OnEvent(eventname.user.deleted)
-	async handleUserDeletedEvent(event: { user: UserEntity, dtouser: UserEntity }) {
+	async handleUserDeletedEvent(event: { user: MasterUserEntity, dtouser: MasterUserEntity }) {
 		this.resourceCreateOrDelete(event, false)
 	}
 
-	async resourceCreateOrDelete(event: { user: UserEntity, dtouser: UserEntity }, isCreated = true) {
-		let usage = new ResourceUsageEntity({
-			owner: new UserEntity({ userId: event.user.owner.userId }),
-			resource: Resource.BOT,
-			usage: 1,
-		});
-		await usage.save().catch(async err => {
-			if (err.writeErrors) {
-				let data = await this.usageRepository.findOne({
-					owner: event.user.owner,
-					resource: Resource.BOT,
-				});
-				data.usage = isCreated ? data.usage + 1 : data.usage - 1;
-				data.save();
-			}
-		});
+	async resourceCreateOrDelete(event: { user: MasterUserEntity, dtouser: MasterUserEntity }, isCreated = true) {
+		console.log(event,isCreated)
 	}
 
 }

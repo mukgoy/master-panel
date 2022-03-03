@@ -1,0 +1,83 @@
+<div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../../../assets/admin/img/icons/spot-illustrations/corner-4.png);"></div>
+    <div class="card-body position-relative">
+        <div class="row">
+            <div class="col-lg-8">
+                <h3>Manage Bots</h3>
+                <p class="mb-0">Manage your bots for multiple websites or FAQ groups</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card mb-3">
+    <div class="card-header border-bottom">
+        <div class="row flex-between-end">
+            <div class="col-auto align-self-center">
+                <h5 class="mb-0" data-anchor="data-anchor">My Bots</h5>
+            </div>
+            <div class="col-auto align-self-center">
+                <a class="btn btn-primary btn-sm mt-3" [routerLink]="['/admin/manage-bots/create']">
+                    Create Bot
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body pt-0" *ngIf="mybots.length">
+        <div class="tab-content">
+            <div class="tab-pane preview-tab-pane active" role="tabpanel">
+                <div class="table-responsive scrollbar">
+                    <table class="table table-hover table-striped overflow-hidden">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Status</th>
+                                <th class="text-end" scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle" *ngFor="let bot of mybots">
+                                <td class="text-nowrap">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-xl">
+                                            <img class="rounded-circle" [src]="bot?.jsondata?.header?.logo" alt="" />
+                                        </div>
+                                        <div class="ms-2">{{bot.name}}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge badge rounded-pill d-block p-2 badge-soft-success">
+                                        Active<span class="ms-1 fa fa-check" data-fa-transform="shrink-2"></span>
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <a [routerLink]="['/admin/manage-faqs',bot.botId]" class="btn btn-primary btn-sm mr-1">FAQs</a>
+                                    <a [routerLink]="[bot.botId]" class="btn btn-info btn-sm mr-1"><i class="fa fa-pencil"></i> Edit</a>
+                                    <a [routerLink]="['/admin/manage-bots',bot.botId,'welcome']" class="btn btn-info btn-sm mr-1">OnBoard</a>
+                                    <a [routerLink]="['/mybot/bot-test',bot.botId]" target="_blank" class="btn btn-info btn-sm mr-1">Test</a>
+                                    <button (click)="openModal(bot)" type="button" class="btn btn-secondary btn-sm mr-1">Code</button>
+                                    <button (click)="deleteBotById(bot.botId)" type="button" class="btn btn-danger btn-sm"><i class="fa fa-times"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4 p-sm-5" *ngIf="!mybots.length">
+        <div class="text-center"><img class="d-block mx-auto mb-4" src="../../../assets/admin/img/icons/spot-illustrations/45.png" alt="shield" width="100" />
+            <h4>Create Bot</h4>
+            <p>You do not have any bot in your account. Please create new bot here.</p>
+            <a class="btn btn-primary btn-sm mt-3" [routerLink]="['/admin/manage-bots/create']">
+                Create Bot
+            </a>
+        </div>
+    </div>
+</div>
+
+<ng-template #installGuideModel>
+    <admin-install-guide-model [modalRef]="modalRef" [botId]="selectedBot.botId">
+    </admin-install-guide-model>
+</ng-template>

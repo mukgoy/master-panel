@@ -1,0 +1,80 @@
+<div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card"
+        style="background-image:url(/assets/admin/img/icons/spot-illustrations/corner-4.png);"></div>
+    <div class="card-body position-relative">
+        <div class="row">
+            <div class="col-lg-8">
+                <h3>Manage Onboard</h3>
+                <p class="mb-0">Manage onboarding on your bot for valuable customers</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="row flex-between-end">
+            <div class="col-auto align-self-center">
+                <h5 class="mb-0" data-anchor="data-anchor">Manage Bot</h5>
+            </div>
+        </div>
+    </div>
+    <div class="card-body bg-light">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>Welcome Message:</label>
+                <ckeditor [editor]="Editor" data="Your welcome message is here" formControlName="welcomeMsg"></ckeditor>
+                <ng-container *ngIf="formGroup.controls.welcomeMsg?.touched || formSubmited">
+                    <p class="text-danger" *ngFor="let errorMsg of formGroup.controls.welcomeMsg.errors | keyvalue" appBotuiScroll>
+                        {{"Welcome Message" | errortostring : errorMsg}}
+                    </p>
+                </ng-container>
+            </div>
+            <br>
+            <h5>Get user information</h5>
+          
+            <div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Ask email</label>
+                        <input type="email" class="form-control" id="inputEmail4" formControlName="askEmailMsg">
+                        <ng-container *ngIf="formGroup.controls.askEmailMsg?.touched || formSubmited">
+                            <p class="text-danger" *ngFor="let errorMsg of formGroup.controls.askEmailMsg.errors | keyvalue" appBotuiScroll>
+                                {{"Ask email" | errortostring : errorMsg}}
+                            </p>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Ask phone number</label>
+                        <input type="email" class="form-control" id="inputEmail4" formControlName="askPhoneMsg">
+                        <ng-container *ngIf="formGroup.controls.askPhoneMsg?.touched || formSubmited">
+                            <p class="text-danger" *ngFor="let errorMsg of formGroup.controls.askPhoneMsg.errors | keyvalue" appBotuiScroll>
+                                {{"Ask phone number" | errortostring : errorMsg}}
+                            </p>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Ask name</label>
+                        <input type="email" class="form-control" id="inputEmail4" formControlName="askNameMsg">
+                        <ng-container *ngIf="formGroup.controls.askNameMsg?.touched || formSubmited">
+                            <p class="text-danger" *ngFor="let errorMsg of formGroup.controls.askNameMsg.errors | keyvalue" appBotuiScroll>
+                                {{"Ask name" | errortostring : errorMsg}}
+                            </p>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-row-reverse col-6 mt-5">
+                <button type="submit" class="btn btn-primary mr-3">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-template #installGuideModel>
+    <admin-install-guide-model [modalRef]="modalRef" [botId]="botId">
+    </admin-install-guide-model>
+</ng-template>

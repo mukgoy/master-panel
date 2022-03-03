@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-header">
+        <button type="button" class="close pull-right mr-1" aria-label="Close" (click)="modalRef.hide()">
+            <span  aria-hidden="true">×</span>
+        </button>
+        <h5 class="mb-0 " data-anchor="data-anchor">Chatbot Embed Code for your website</h5>
+    </div>
+    <div class="card-body bg-light">
+        <p>Copy the Javascript code from below and paste just before the closing of body tag (&lt;/body&gt;) on your website
+        </p>
+        <pre  class="language-js" >
+<code  class="lang-js pl-2 ">
+&lt;script src=&quot;{{bundleJs}}&quot;&gt;&lt;/script&gt;
+&lt;script&gt;lalabot.init("{{botId}}")&lt;/script&gt;
+</code>
+        </pre>
+        <div class="pull-right  mt-2 ">
+            <button  class="btn btn-secondary btn-sm mr-2" (click)="copyText()" > Copy Code </button>
+            <button  class="btn btn-primary  btn-sm " [routerLink]="['/admin/manage-faqs',botId]" (click)="modalRef.hide()"> Manage FAQs </button>
+       </div>
+    </div>    
+</div>

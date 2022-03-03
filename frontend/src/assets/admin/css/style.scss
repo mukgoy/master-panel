@@ -1,0 +1,29 @@
+@import url("theme.min.css");
+@import url("cbootstrap.scss");
+
+
+.input-group.admin-color-picker input{
+    border-right:0px
+}
+
+.faq-accordion-box .panel-heading, .faq-accordion-box .panel-body{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.faq-accordion-box .panel-default{
+    border-bottom: 1px solid var(--falcon-card-border-color);
+    background: transparent;
+    border-radius: 0px;
+    box-shadow: 0px 0px !important;
+}
+
+.faq-accordion-box i{
+    transition-duration: .5s;
+}
+.faq-accordion-box .panel-open i.fa-angle-down{
+    display: initial !important;
+}
+
+.faq-accordion-box .panel-open i.fa-angle-right{
+    display: none;
+}

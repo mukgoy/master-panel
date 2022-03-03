@@ -1,0 +1,64 @@
+ng new admin-panel
+cd admin-panel
+ng add @ng-bootstrap/ng-bootstrap
+npm install font-awesome --save
+npm i js-channel
+
+ng g m mybot
+ng g c mybot/components/iframe-window
+ng g c mybot/components/widget-wrapper
+ng g c mybot/components/widget-wrapper/header
+ng g c mybot/components/widget-wrapper/body
+ng g c mybot/components/widget-wrapper/footer
+ng g c mybot/components/bot-test
+ng g s mybot/services/channel
+ng g s mybot/services/store
+ng g s mybot/services/msg
+
+ng g m auth
+ng g c auth/components/login
+ng g c auth/components/signup
+ng g c auth/components/forgot-password
+ng g c auth/components/reset-password
+ng g c auth/components/layout
+ng g s auth/services/auth
+ng g s auth/services/user
+
+
+ng g m admin
+
+
+ng g c admin/components/dashboard
+ng g c admin/components/chat-flows
+ng g c admin/components/chat-flows/details
+ng g c admin/components/chat-flows/manage-welcome
+ng g c admin/components/chat-flows/models/install-guide-model
+ng g c admin/components/faqs
+ng g c admin/components/faqs/models/add-edit-faq-model
+ng g c admin/components/conversations
+ng g c admin/components/crm
+ng g c admin/components/myprofile
+ng g c admin/components/shared/layout
+ng g c admin/components/shared/header
+ng g c admin/components/shared/sidebar
+ng g c admin/components/shared/footer
+
+ng g c admin/components/shared/utils/color-picker
+ng g c admin/components/shared/utils/image-picker
+
+
+
+ng g c admin/components/businesses
+ng g c admin/components/mychat
+ng g c admin/components/channels
+ng g c admin/components/contacts
+ng g s admin/services/upload
+ng g s admin/services/bot
+ng g s admin/services/faq
+ng g s admin/services/helper
+
+ng g m shared
+
+
+ng g m master
+ng g c master/components/dashboard

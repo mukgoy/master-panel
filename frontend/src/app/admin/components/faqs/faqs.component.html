@@ -1,0 +1,70 @@
+<div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card"
+        style="background-image:url(../../assets/admin/img/icons/spot-illustrations/corner-4.png);"></div>
+    <!--/.bg-holder-->
+    <div class="card-body position-relative">
+        <div class="row">
+            <div class="col-lg-8">
+                <h3>Manage FAQs</h3>
+                <p class="mb-0">Below you'll manage answers to the questions we get asked the most.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header border-bottom">
+        <div class="row flex-between-end">
+            <div class="col-auto align-self-center">
+                <select class="form-select" [(ngModel)]="botId">
+                    <option value="">Select Bot</option>
+                    <option [value]="bot.botId" *ngFor="let bot of mybots">{{bot.name}}</option>
+                </select>
+            </div>
+            <div class="col-auto align-self-center">
+                <button class="btn btn-primary btn-sm mt-3" (click)="openModal()">
+                    Create FAQ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body" *ngIf="getFilteredFaqs().length">
+
+        <accordion [isAnimated]="true" class="faq-accordion-box border rounded">
+            <ng-container *ngFor="let faq of getFilteredFaqs()">
+                <accordion-group>
+                    <div accordion-heading>
+                        <i class="fa fa-angle-right " aria-hidden="true"></i>
+                        <i class="fa fa-angle-down d-none  " aria-hidden="true"></i>
+                        {{faq.question}} 
+                    
+                    <div class="pull-right">
+                        <button class="btn btn-info btn-sm mr-1 " (click)="openModal(faq)" >
+                            <i class="fa fa-pencil"></i> Edit
+                        </button>
+                        <button  type="button" class="btn btn-danger btn-sm "(click)="deleteFaqById(faq.faqId)" ><i class="fa fa-times"></i> Delete </button>
+                    </div>
+                    </div>
+                    <div class="pl-3" [innerHtml]="faq.answer"></div>
+                </accordion-group>
+            </ng-container>
+        </accordion>
+    </div>
+
+    <div class="card-body p-4 p-sm-5" *ngIf="!getFilteredFaqs().length">
+        <div class="text-center"><img class="d-block mx-auto mb-4"
+                src="../../../assets/admin/img/icons/spot-illustrations/45.png" alt="shield" width="100" />
+            <h4>Create FAQ</h4>
+            <p>You do not have any FAQ in your account or selected bot. Please create new FAQ here.</p>
+            <button class="btn btn-primary btn-sm mt-3" (click)="openModal()">
+                Create FAQ
+            </button>
+        </div>
+    </div>
+
+
+</div>
+<ng-template #faqModel>
+    <admin-add-edit-faq-model [modalRef]="modalRef" [editingFaq]="editingFaq" (onSuccess)="onSuccess($event)" [botId]="botId">
+    </admin-add-edit-faq-model>
+</ng-template>

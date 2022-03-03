@@ -1,0 +1,44 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" style="background-color: #f0f0f0;">
+    <button type="button" class="close pull-right mr-1" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">×</span>
+    </button>
+    <h3 class="pt-4 pl-4">{{isEditMode ? 'Edit' : 'Add'}} FAQ</h3>
+    <div class="modal-body m-1 m-lg-2">
+
+        <div class="form-group">
+            <label>Select Bot:</label>
+            <select class="form-select" formControlName="botId">
+                <option value="">Select Bot</option>
+                <option [ngValue]="bot.botId" *ngFor="let bot of mybots">{{bot.name}}</option>
+            </select>
+            <ng-container *ngIf="formGroup.controls.botId?.touched || formSubmited">
+                <p class="text-danger" *ngFor="let errorMsg of formGroup.controls.botId.errors | keyvalue" appBotuiScroll>
+                    {{"Select Bot" | errortostring : errorMsg}}
+                </p>
+            </ng-container>
+        </div>
+        <div class="form-group">
+            <label>Question:</label>
+            <input type="email" class="form-control" placeholder="Enter Question" formControlName="question">
+            <ng-container *ngIf="formGroup.controls.question?.touched || formSubmited">
+                <p class="text-danger" *ngFor="let errorMsg of formGroup.controls.question.errors | keyvalue" appBotuiScroll>
+                    {{"Question" | errortostring : errorMsg}}
+                </p>
+            </ng-container>
+        </div>
+        <div class="form-group">
+            <label>Answer:</label>
+            <ckeditor [editor]="Editor" data="Your answer is here" formControlName="answer"></ckeditor>
+            <ng-container *ngIf="formGroup.controls.answer?.touched || formSubmited">
+                <p class="text-danger" *ngFor="let errorMsg of formGroup.controls.answer.errors | keyvalue" appBotuiScroll>
+                    {{"Answer" | errortostring : errorMsg}}
+                </p>
+            </ng-container>
+        </div>
+        
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary model-submit-btn">Submit</button>
+    </div>
+</form>

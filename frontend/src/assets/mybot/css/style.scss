@@ -1,0 +1,11 @@
+.mybot-human-msg-box{
+    border-radius: 1rem 1rem 0rem 1rem !important;
+}
+.mybot-bot-msg-box{
+    border-radius: 1rem 1rem 1rem 0rem !important;
+}
+
+.mybot-human-msg-box p, .mybot-bot-msg-box{
+    font-size: 1rem !important;
+    padding: 0.1rem;
+}

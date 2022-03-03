@@ -1,0 +1,5 @@
+<span class="px-3 border rounded pt-1 mr-1"
+    *ngFor="let color of colors"
+    [ngClass]="'bg-'+color"
+    (click)="afterSelect(color)">
+</span>

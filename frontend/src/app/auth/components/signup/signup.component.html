@@ -1,0 +1,77 @@
+<main class="main" id="top">
+    <div class="container" data-layout="container">
+        <div class="row flex-center min-vh-100 py-6">
+            <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4"><a class="d-flex flex-center mb-4" [routerLink]="['/']">
+                    <img class="me-2" src="../../../assets/admin/img/icons/spot-illustrations/falcon.png" alt="" width="58" />
+                    <span class="font-sans-serif fw-bolder fs-5 d-inline-block">falcon</span></a>
+                <div class="card">
+                    <div class="card-body p-4 p-sm-5">
+                        <div class="row flex-between-center mb-2">
+                            <div class="col-auto">
+                                <h5>Register</h5>
+                            </div>
+                            <div class="col-auto fs--1 text-600"><span class="mb-0 undefined">Have an account?</span>
+                                <span><a [routerLink]="['/auth/login']">Login</a></span>
+                            </div>
+                        </div>
+                        <form [formGroup]="myForm" (submit)="signup()">
+                            <div class="mb-3">
+                                <input class="form-control" formControlName="name" type="text" autocomplete="on" placeholder="Name" />
+                                <ng-container *ngIf="myForm.touched || formSubmited">
+                                    <small class="form-text text-danger" *ngFor="let errorMsg of myForm.controls.name.errors | keyvalue | slice:0:1">
+                                        {{"Name" | errortostring : errorMsg}}
+                                    </small>
+                                </ng-container>
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" formControlName="email" type="email" autocomplete="on" placeholder="Email address" />
+                                <ng-container *ngIf="myForm.controls.email?.touched || formSubmited">
+                                    <small class="form-text text-danger" *ngFor="let errorMsg of myForm.controls.email.errors | keyvalue | slice:0:1">
+                                        {{"Email" | errortostring : errorMsg}}
+                                    </small>
+                                </ng-container>
+                            </div>
+                            <div class="row gx-2">
+                                <div class="mb-3 col-sm-12">
+                                    <input class="form-control" formControlName="password" type="password" autocomplete="on" placeholder="Password" />
+                                    <ng-container *ngIf="myForm.controls.password?.touched || formSubmited">
+                                        <small class="form-text text-danger" *ngFor="let errorMsg of myForm.controls.password.errors | keyvalue | slice:0:1">
+                                            {{"Password" | errortostring : errorMsg}}
+                                        </small>
+                                    </ng-container>
+                                </div>
+                                <div class="mb-3 col-sm-12">
+                                    <input class="form-control" formControlName="cpassword" type="password" autocomplete="on" placeholder="Confirm Password" />
+                                    <ng-container *ngIf="myForm.controls.cpassword?.touched || formSubmited">
+                                        <small class="form-text text-danger" *ngFor="let errorMsg of myForm.controls.cpassword.errors | keyvalue | slice:0:1">
+                                            {{"Confirm password" | errortostring : errorMsg}}
+                                        </small>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" formControlName="checkbox" type="checkbox" id="basic-register-checkbox" />
+                                <label class="form-label" for="basic-register-checkbox">
+                                    I accept the <a href="#!">terms </a>and <a href="#!">privacy policy</a></label>
+                                    <ng-container *ngIf="myForm.controls.checkbox?.touched || formSubmited">
+                                        <small class="form-text text-danger" *ngFor="let errorMsg of myForm.controls.checkbox.errors | keyvalue | slice:0:1">
+                                            {{"Checkbox" | errortostring : errorMsg}}
+                                        </small>
+                                    </ng-container>
+                            </div>
+                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">Register</button></div>
+                        </form>
+                        <div class="position-relative mt-4">
+                            <hr class="bg-300" />
+                            <div class="divider-content-center">or register with</div>
+                        </div>
+                        <div class="row g-2 mt-2">
+                            <div class="col-sm-6"><a class="btn btn-outline-google-plus btn-sm d-block w-100" href="#"><span class="fa fa-google me-2" data-fa-transform="grow-8"></span>
+                                    google</a></div>
+                            <div class="col-sm-6"><a class="btn btn-outline-facebook btn-sm d-block w-100" href="#"><span class="fa fa-facebook me-2" data-fa-transform="grow-8"></span> facebook</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

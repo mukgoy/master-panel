@@ -1,0 +1,171 @@
+<div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card"
+        style="background-image:url(/assets/admin/img/icons/spot-illustrations/corner-4.png);"></div>
+    <div class="card-body position-relative">
+        <div class="row">
+            <div class="col-lg-8">
+                <h3>Manage Bots</h3>
+                <p class="mb-0">Create beautiful bots for different website or FAQ group.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="row flex-between-end">
+            <div class="col-auto align-self-center">
+                <h5 class="mb-0" data-anchor="data-anchor">My bots</h5>
+            </div>
+        </div>
+    </div>
+    <div class="card-body bg-light">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <div class="form-floating mb-3">
+                <input class="form-control" formControlName="name" id="floatingInput" type="text" placeholder="Bot Name" />
+                <label for="floatingInput">Bot Name</label>
+                <ng-container *ngIf="formGroup.controls.name?.touched || formSubmited">
+                    <p class="text-danger" *ngFor="let errorMsg of formGroup.controls.name.errors | keyvalue" appBotuiScroll>
+                        {{"Bot name" | errortostring : errorMsg}}
+                    </p>
+                </ng-container>
+            </div>
+            <br>
+            <h5>Customize your chat widget</h5>
+            <div formGroupName="jsondata">
+                <div class="form-check my-4 d-none">
+                    <input class="form-check-input" formControlName="isGradient" id="flexCheckChecked" type="checkbox"
+                        value="" checked="">
+                    <label class="form-check-label" for="flexCheckChecked">Use Gradient Color</label>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputEmail4">First Gradient Color</label>
+                        <div class="input-group  admin-color-picker">
+                            <input type="text" class="form-control" formControlName="bgColor1">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-white py-0">
+                                    <ngx-colors ngx-colors-trigger 
+                                    (change)="onColorSelect($event, 'bgColor1')"
+                                    formControlName="bgColor1"></ngx-colors>
+                                </span>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="formGroup.get('jsondata')?.get('bgColor1')?.touched || formSubmited">
+                            <p class="text-danger" *ngFor="let errorMsg of formGroup.get('jsondata')?.get('bgColor1').errors | keyvalue">
+                                {{"First Gradient Color" | errortostring : errorMsg}}
+                            </p>
+                        </ng-container>
+                    </div>
+                    <div class="form-group col-md-6 mb-3 ">
+                        <label for="inputPassword4">Second Gradient Color</label>
+                        <div class="input-group admin-color-picker">
+                            <input type="text" class="form-control" formControlName="bgColor2">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-white py-0">
+                                    <ngx-colors ngx-colors-trigger 
+                                    (change)="onColorSelect($event, 'bgColor2')"
+                                    formControlName="bgColor2"></ngx-colors>
+                                </span>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="formGroup.get('jsondata')?.get('bgColor2')?.touched || formSubmited">
+                            <p class="text-danger" *ngFor="let errorMsg of formGroup.get('jsondata')?.get('bgColor2').errors | keyvalue">
+                                {{"Second Gradient Color" | errortostring : errorMsg}}
+                            </p>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputPassword4">Text Color</label>
+                        <div class="input-group  admin-color-picker">
+                            <input type="text" class="form-control" formControlName="textColor">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-white py-0">
+                                    <ngx-colors ngx-colors-trigger 
+                                    (change)="onColorSelect($event, 'textColor')"
+                                    formControlName="textColor"></ngx-colors>
+                                </span>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="formGroup.get('jsondata')?.get('textColor')?.touched || formSubmited">
+                            <p class="text-danger" *ngFor="let errorMsg of formGroup.get('jsondata')?.get('textColor').errors | keyvalue">
+                                {{"Text Color" | errortostring : errorMsg}}
+                            </p>
+                        </ng-container>
+                    </div>
+                </div>
+                <div formGroupName="header">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Header Text Title</label>
+                            <input type="email" class="form-control" id="inputEmail4" formControlName="text">
+                            <ng-container *ngIf="formGroup.get('jsondata')?.get('header')?.get('text').touched || formSubmited">
+                                <p class="text-danger" *ngFor="let errorMsg of formGroup.get('jsondata')?.get('header')?.get('text').errors | keyvalue">
+                                    {{"Header Text Title" | errortostring : errorMsg}}
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-0">
+                            <label class="form-label" for="customFile">Header Icon / Logo</label>
+                            <input class="form-control" id="customFile" type="file" accept="image/*" (change)="handleFileInput($event)">
+                            <input type="hidden" formControlName="logo">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="">
+                            <admin-image-picker 
+                                iconType="header" 
+                                [iconActive]="iconActive['header']" 
+                                (onSelect)="onIconSelect($event, 'header')"
+                                [bgColor]="formGroup.value.jsondata.bgColor1"
+                                [textColor]="formGroup.value.jsondata.textColor"
+                            ></admin-image-picker>
+                        </div>
+                    </div>
+                </div>
+                <div formGroupName="launcher">
+                    <div class="form-row mt-4">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Launcher Text</label>
+                            <input type="email" class="form-control" id="inputEmail4" formControlName="text">
+                            <ng-container *ngIf="formGroup.get('jsondata')?.get('launcher')?.get('text').touched || formSubmited">
+                                <p class="text-danger" *ngFor="let errorMsg of formGroup.get('jsondata')?.get('launcher')?.get('text').errors | keyvalue">
+                                    {{"Laucher Text" | errortostring : errorMsg}}
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-0">
+                            <label class="form-label" for="customFile">Launcher Icon / Logo</label>
+                            <input class="form-control" id="customFile" type="file" accept="image/*" (change)="handleFileInput($event)">
+                            <input type="hidden" formControlName="logo">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="">
+                            <admin-image-picker 
+                                iconType="launcher" 
+                                [iconActive]="iconActive['launcher']" 
+                                (onSelect)="onIconSelect($event, 'launcher')"
+                                [bgColor]="formGroup.value.jsondata.bgColor1"
+                                [textColor]="formGroup.value.jsondata.textColor"
+                            ></admin-image-picker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-row-reverse col-6 mt-5">
+                <button type="submit" class="btn btn-primary mr-3">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-template #installGuideModel>
+    <admin-install-guide-model [modalRef]="modalRef" [botId]="botId">
+    </admin-install-guide-model>
+</ng-template>
